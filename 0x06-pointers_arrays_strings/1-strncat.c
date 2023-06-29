@@ -1,34 +1,42 @@
-#include "main.h"
-
+#include "math.h"
 /**
- * _strncat - concatenate two strings using at most n bytes from src
- * @dest: destination string
- * @src: source string
- * @n: maximum number of characters to concatenate
- *
- * Return: pointer to the resulting string (dest)
+ * _strlen - return the length of a string.
+ * @s : pointer to a string.
+ * Return: len; length of string str.
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+	int len = 0;
+
+	while (*(s + i) != '\0')
+	{
+		len += 1;
+		i++;
+	}
+	return (len);
+}
+/**
+ * _strncat - Concatenate two strings.
+ * @dest : Pointer to string.
+ * @src : Pointer to string.
+ * @n : integer.
+ * Return: Pointer to string.
  */
 char *_strncat(char *dest, char *src, int n)
 {
-	int i = 0;
-	int j = 0;
+	int len = _strlen(dest);
+	int i;
 
-	/* Find the end of the destination string */
-	while (dest[i] != '\0')
+	if (n > _strlen(src))
 	{
-		i++;
+		for (i = 0; *(src + i) != '\0'; i++)
+			*(dest + len + i) = *(src + i);
+		*(dest + _strlen(dest)) = '\0';
+		return (dest);
 	}
-
-	/* Copy characters from src to dest up to n or until src ends */
-	while (j < n && src[j] != '\0')
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-
-	/* Append null terminator to the resulting string */
-	dest[i] = '\0';
-
-	return dest;
+	for (i = 0; i < n; i++)
+		*(dest + len + i) = *(src + i);
+	*(dest + _strlen(dest)) = '\0';
+	return (dest);
 }
