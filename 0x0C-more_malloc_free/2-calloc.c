@@ -1,46 +1,35 @@
-#include <stdlib.h>
 #include "main.h"
-
+#include <stdlib.h>
 /**
- * *_memset - it fills memory with a cte byte
- * @s: memory area to be filled
- * @b: char to be copied 
- * @n: how many time b is copied
- *
- * Return: pointer to the memory area s
+ * _memset - it fills memory with a cte byte.
+ * @s : Pointer to string. (Memory area)
+ * @b : cte byte.
+ * @n : Number of bytes filled.
+ * Return: Pointer to the memory area 
  */
 char *_memset(char *s, char b, unsigned int n)
 {
 	unsigned int i;
 
 	for (i = 0; i < n; i++)
-	{
-		s[i] = b;
-	}
-
+		*(s + i) = b;
 	return (s);
 }
-
 /**
- * *_calloc - it allocates memory for array
- * @elem_numb: elements number in array
- * @size: size of each element
- *
- * Return: pointer to allocated memory
+ * _calloc - allocates memory for an array by using malloc.
+ * @nmemb : Number of elements.
+ * @size : Size of each element.
+ * Return: Pointer.
  */
-void *_calloc(unsigned int elem_numb, unsigned int size)
+void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	char *ptr;
+	void *array;
 
-	if (elem_numb == 0 || size == 0)
-		return (NULL);
-
-	ptr = malloc(size * elem_numb);
-
-	if (ptr == NULL)
-		return (NULL);
-
-	_memset(ptr, 0, elem_numb * size);
-
-	return (ptr);
+	if (nmemb == 0 || size == 0)
+		return (0);
+	array = malloc(nmemb * size);
+	if (array == NULL)
+		return (0);
+	_memset(array, 0, size * nmemb);
+	return (array);
 }
