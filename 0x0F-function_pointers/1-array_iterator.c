@@ -1,21 +1,21 @@
 #include "function_pointers.h"
 #include <stdio.h>
 /**
- * array_iterator - each array is printed 
- * @ar: array to print
- * @size: size of arrays to print
- * @ptp: pointer to print 
+ * array_iterator - array to print
+ * @array: array
+ * @size: the size of the array
+ * @action: pointer to print 
  * Return: void
  */
-void array_iterator(int *ar, size_t size, void (*ptp)(int))
+void array_iterator(int *array, size_t size, void (*action)(int))
 {
 	unsigned int i;
 
-	if (ar == NULL || ptp == NULL)
+	if (array == NULL || action == NULL)
 		return;
 
 	for (i = 0; i < size; i++)
 	{
-		ptp(ar[i]);
+		action(array[i]);
 	}
 }
